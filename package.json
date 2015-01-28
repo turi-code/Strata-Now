@@ -1,0 +1,45 @@
+{
+  "name": "quantum-leap",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dato-code/quantum-leap"
+  },
+  "author": "Chris DuBois, Zach Nation, Dick Kreisberg",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/dato-code/quantum-leap/issues"
+  },
+  "homepage": "https://github.com/dato-code/quantum-leap",
+  "devDependencies": {
+    "browserify": "^8.1.3",
+    "compression": "^1.4.0",
+    "express": "^4.11.2",
+    "gulp": "^3.8.11",
+    "gulp-cleanhtml": "^0.1.0",
+    "gulp-html-replace": "^1.4.4",
+    "gulp-if": "^1.2.5",
+    "gulp-livereload": "^3.7.0",
+    "gulp-minify-css": "^0.4.5",
+    "gulp-rename": "^1.2.0",
+    "gulp-streamify": "0.0.5",
+    "gulp-uglify": "^1.1.0",
+    "gulp-util": "^3.0.3",
+    "open": "0.0.5",
+    "react-tools": "^0.12.2",
+    "reactify": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0"
+  },
+  "dependencies": {
+    "bowser": "^0.7.2",
+    "custom-event": "^1.0.0",
+    "moment": "^2.9.0",
+    "react": "^0.12.2",
+    "react-router": "^0.12.4"
+  }
+}
