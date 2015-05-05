@@ -1,4 +1,4 @@
-Code for creating and launching a web application with a content-based recommender model using Dato's [GraphLab Create](https://dato.com/products/create/) and [Predictive Services](https://dato.com/learn/userguide/index.html#Deployment).
+Code for creating and launching a web application with a content-based recommender model using Dato's [GraphLab Create](https://dato.com/products/create/) and [Predictive Services](https://dato.com/learn/userguide/deployment/introduction.html).
 
 This app provides personalized recommendations for conference talks based on the abstract of each talk. It was used by more than 1000 attendees of the [Strata-Hadoop World Conference 2015](http://strataconf.com/big-data-conference-ca-2015/public/content/home) in San Jose.
 
@@ -27,7 +27,7 @@ sudo npm install -g gulp
 ```
 
 ### Installation
-```
+```bash
 npm install
 gulp
 ```
@@ -47,23 +47,25 @@ For more details, see the [quick start guide](https://dato.com/products/create/q
 ### Running
 
 Scrape data from strataconf.com
-```
+```bash
 cd data
 python scrape.py
 ```
 
 Create models and update predictive service
-```
+```bash
 cd deploy
 python run.py
 ```
 
 Now you are able to get recommendations and similar talks via a REST API:
 
-```
-curl -X POST -d '{"api_key": "b9b8dd75-a6d3-4903-b6a7-2dc691d060d8", 
-                  "data":{"input": {"item_ids":["43750"], "how_many": 5}}}' 
+```bash
+curl -X POST -d '{"api_key": "b9b8dd75-a6d3-4903-b6a7-2dc691d060d8", \
+                  "data":{"input": {"item_ids":["43750"], "how_many": 5}}}' \
                 stratanow-175425062.us-west-2.elb.amazonaws.com/data/item_sim
+```
+```json
 {
  "uuid": "4373dfd0-6ed6-4074-9ee4-cc5fbb7e4789", 
  "version": 1, 
