@@ -26,7 +26,7 @@ def parse_detail_url(url_suffix):
     d = page.find('div', 'en_session_description')
     if d is not None:
         info['abstract'] = clean(d)
-    speaker_links = page.select('a[href^="/big-data-conference-uk-2015/public/schedule/speaker/"]')
+    speaker_links = page.select('a[href^="/big-data-conference-ny-2015/public/schedule/speaker/"]')
     info['speaker_urls'] = [link.get('href') for link in speaker_links]
     return info
 
@@ -53,17 +53,17 @@ if __name__ == "__main__":
 
     # Get detail ids from ical
     detail_ids = []
-    x = requests.get('http://strataconf.com/big-data-conference-uk-2015/public/schedule/ical')
+    x = requests.get('http://strataconf.com/big-data-conference-ny-2015/public/schedule/ical')
     for line in x.content.split('\n'):
         if line.startswith(' --'):
             detail_ids.append(line.split(' --')[1].strip())
 
     # For each detail, make a list of speakers
-    detail_urls = ['big-data-conference-uk-2015/public/schedule/detail/' + id
+    detail_urls = ['big-data-conference-ny-2015/public/schedule/detail/' + id
                     for id in detail_ids]
 
     # Scrape sponsors
-    url = 'http://strataconf.com/big-data-conference-uk-2015/public/content/sponsors'
+    url = 'http://strataconf.com/big-data-conference-ny-2015/public/content/sponsors'
     page = BeautifulSoup(requests.get(url).content)
     sponsor_elements = page.find_all('div', 'sponsor-blurb')
     sponsors = {}
