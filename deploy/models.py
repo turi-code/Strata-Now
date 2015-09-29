@@ -1,30 +1,5 @@
 import graphlab as gl
 
-def create_ps(LOG_PATH, PS_PATH):
-    """
-    Create a PredictiveService with given S3 paths for logs and the service.
-    """
-
-    try:
-
-        if PROD:
-          e = gl.deploy.environment.EC2('ec2-env', LOG_PATH,
-                                        region='us-west-2', num_hosts=3)
-          ps = gl.deploy.predictive_service.create('strata-now',
-                                                   e, PS_PATH)
-        else:
-          e = gl.deploy.environment.EC2('ec2-env-tmp', LOG_PATH,
-                                        region='us-west-2', num_hosts=1)
-
-          ps = gl.deploy.predictive_service.create('strata-now-test',
-                                                   e, PS_PATH)
-
-        ps.set_CORS("*")
-    except:
-        ps = gl.deploy.predictive_service.load(PS_PATH)
-        print ps
-    return ps
-
 def parse_details(filename):
     """
     Given an SArray containing the details of each talk, clean up the abstracts
@@ -246,10 +221,10 @@ def upload_list_page(ps, trimmed):
         list_page.log(query_result=res)
         return res
 
-    if 'list_page' not in ps.deployed_predictive_objects:
-        ps.add('list_page', list_page)
+    if 'stratanow_list_page' not in ps.deployed_predictive_objects:
+        ps.add('stratanow_list_page', list_page)
     else:
-        ps.update('list_page', list_page)
+        ps.update('stratanow_list_page', list_page)
     ps.apply_changes()
 
 
@@ -273,10 +248,10 @@ def upload_speaker(ps, talks_per_speaker):
         query.log(context_id='my_context_id', query_result=result)
         return result
 
-    if 'speaker' not in ps.deployed_predictive_objects:
-        ps.add('speaker', query)
+    if 'stratanow_speaker' not in ps.deployed_predictive_objects:
+        ps.add('stratanow_speaker', query)
     else:
-        ps.update('speaker', query)
+        ps.update('stratanow_speaker', query)
     ps.apply_changes()
 
     return {'ps': ps}
@@ -338,10 +313,10 @@ def upload_item_sim(ps, details, m, nearest):
         return result
 
     # Deploy the model
-    if 'item_sim' not in ps.deployed_predictive_objects:
-        ps.add('item_sim', query)
+    if 'stratanow_item_sim' not in ps.deployed_predictive_objects:
+        ps.add('stratanow_item_sim', query)
     else:
-        ps.update('item_sim', query)
+        ps.update('stratanow_item_sim', query)
     ps.apply_changes()
 
 

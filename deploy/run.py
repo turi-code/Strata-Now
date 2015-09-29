@@ -1,22 +1,9 @@
 import graphlab as gl
 from models  import *
 
-# Change these paths to be s3 buckets that you have access to.
-PROD = True
-if PROD:
-    LOG_PATH = 's3://dato-stratanow/log'
-    PS_PATH = 's3://dato-stratanow/pred-service-prod'
-else:
-    LOG_PATH = 's3://gl-testing-chris/strata-log'
-    PS_PATH = 's3://dato-stratanow/pred-service-2015-05-03'
 
-
-e = gl.deploy.environment.EC2('myenv', LOG_PATH, region='us-west-2', num_hosts=2)
-
-# Uncomment to create the first time.
-# ps = gl.deploy.predictive_service.create('stratanow', e, PS_PATH)
-
-ps = gl.deploy.predictive_service.load(PS_PATH)
+path = "s3://gl-demo-usw2/predictive_service/demolab/ps-1.6"
+ps = gl.deploy.predictive_service.load(path)
 
 # Define dependencies
 state = {'details_filename': '../data/talks.json',
