@@ -30,7 +30,7 @@ upload_item_sim(ps, details, nn_model, nearest)
 # Ad hoc testing
 
 # Via Python client
-print ps.query('item_sim', input={'item_ids': ['43750'], 'how_many':5})
+print ps.query('stratanow_item_sim', input={'item_ids': ['43169'], 'how_many':5})
 
 # Via Curl
 # !curl -X POST -d '{"api_key": "b9b8dd75-a6d3-4903-b6a7-2dc691d060d8", "data":{"input": {"item_ids":["43750"], "how_many": 5}}}' stratanow-175425062.us-west-2.elb.amazonaws.com/data/item_sim

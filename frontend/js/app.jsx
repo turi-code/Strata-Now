@@ -9,8 +9,8 @@ var PureRenderMixin = React.addons.PureRenderMixin;
 
 /********* statics ****************/
 var PredictiveService = {
-  apikey: 'b9b8dd75-a6d3-4903-b6a7-2dc691d060d8', 
-  url: 'http://stratanow-175425062.us-west-2.elb.amazonaws.com/data/'
+  apikey: 'b437e588-0f2b-45e1-81c8-ce3acfa81ade', 
+  url: 'http://demolab-one-six-2015364754.us-west-2.elb.amazonaws.com/data/'
 };
 var storagePrefix = 'stratanow_like_';
 /********* / statics **************/
@@ -633,7 +633,7 @@ var ListView = React.createClass({
   mixins: [ReactRouter.State],
   getMoreElements: function(skip) {
     var limit = 10;
-    var url = PredictiveService.url + 'list_page';
+    var url = PredictiveService.url + 'stratanow_list_page';
     var data = {
       'api_key': PredictiveService.apikey,
       'data': {'input':{'skip': skip, 'limit': limit}}
@@ -702,7 +702,7 @@ var ListView = React.createClass({
 });
 
 var TalkFocusView = React.createClass({
-  mixins: [ReactRouter.State, PoweredByPredictiveService('item_sim', function(data) {
+  mixins: [ReactRouter.State, PoweredByPredictiveService('stratanow_item_sim', function(data) {
     data.data.input['item_ids'] = [this.getParams().talkId];
     data.data.input['how_many'] = 10;
   }, function(data) {
@@ -765,7 +765,7 @@ var TalkFocusView = React.createClass({
 });
 
 var SpeakerRecommendations = React.createClass({
-  mixins: [PoweredByPredictiveService('item_sim', function(data) {
+  mixins: [PoweredByPredictiveService('stratanow_item_sim', function(data) {
     console.assert(this.props.talkIds.length > 0);
     data.data.input['item_ids'] = this.props.talkIds;
     data.data.input['how_many'] = 10;
@@ -796,7 +796,7 @@ var SpeakerRecommendations = React.createClass({
 });
 
 var SpeakerFocusView = React.createClass({
-  mixins: [ReactRouter.State, PoweredByPredictiveService('speaker', function(data) {
+  mixins: [ReactRouter.State, PoweredByPredictiveService('stratanow_speaker', function(data) {
     data.data.input['id'] = this.getParams().speakerId;
     data.data.input['how_many'] = 10;
   }, function(data) {
