@@ -909,7 +909,7 @@ var App = React.createClass({
       }
       return;
     }
-    var url = PredictiveService.url + 'item_sim';
+    var url = PredictiveService.url + 'stratanow_item_sim';
     var how_many = getHowManyRecsNeeded(item_ids);
     var data = {
       'api_key': PredictiveService.apikey,
